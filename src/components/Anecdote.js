@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { vote } from '../reducers/anecdoteReducer';
 import { useDispatch } from 'react-redux'
 import { setNotification, removeNotification } from '../reducers/notificationReducer';
