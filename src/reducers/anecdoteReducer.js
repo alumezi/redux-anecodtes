@@ -1,22 +1,14 @@
-const getId = () => (100000 * Math.random()).toFixed(0)
-
-export const vote = id => {
+export const change = data => {
   return {
-    type: 'VOTE',
-    data: {
-      id
-    }
+    type: 'CHANGE',
+    data
   }
 }
 
-export const createAnecdote = content => {
+export const createAnecdote = data => {
   return {
     type: "CREATE",
-    data: {
-      content,
-      votes: 0,
-      id: getId()
-    }
+    data
   }
 }
 
@@ -31,11 +23,9 @@ const reducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_ANECDOTES':
       return action.data
-    case 'VOTE':
+    case 'CHANGE':
       const id = action.data.id;
-      const anecdote = state.find(item => item.id === id)
-      const changedAnecdote = { ...anecdote, votes: anecdote.votes + 1 }
-      return state.map(item => item.id !== id ? item : changedAnecdote)
+      return state.map(item => item.id !== id ? item : action.data)
     case 'CREATE':
       return state.concat(action.data)
     default:
