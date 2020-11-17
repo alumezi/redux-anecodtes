@@ -3,9 +3,10 @@ import { Anecdote } from './Anecdote';
 import { useSelector } from 'react-redux';
 
 export const AnecdoteList = () => {
-    const anecdotes = useSelector(state => state.anecdotes)
+    const anecdotes = useSelector(state => {
+        return state.anecdotes})
     const filterKeyWord = useSelector(state => state.filter).toLowerCase()
-
+    
     const sortAnecodtes = (anecdotes) => {
         return anecdotes.filter(item => item.content.toLowerCase().includes(filterKeyWord)).sort((a, b) => b.votes - a.votes)
     }

@@ -1,4 +1,4 @@
-import { getAllAnecdotes } from '../services/anecdotes'
+import { getAllAnecdotes, createAnecdote } from '../services/anecdotes'
 
 export const change = data => {
   return {
@@ -7,10 +7,13 @@ export const change = data => {
   }
 }
 
-export const createAnecdote = data => {
-  return {
-    type: "CREATE",
-    data
+export const saveAnecdote = content => {
+  return async dispatch => {
+    const data = await createAnecdote(content)
+    dispatch({
+      type: "CREATE",
+      data
+    })
   }
 }
 
