@@ -1,9 +1,12 @@
-import { getAllAnecdotes, createAnecdote } from '../services/anecdotes'
+import { getAllAnecdotes, createAnecdote, updateAnecdote } from '../services/anecdotes'
 
-export const change = data => {
-  return {
-    type: 'CHANGE',
-    data
+export const changeAnecdote = content => {
+  return async dispatch => {
+    const data = await updateAnecdote(content)
+    dispatch({
+      type: "CHANGE",
+      data
+    })
   }
 }
 

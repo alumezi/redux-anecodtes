@@ -12,7 +12,7 @@ export const createAnecdote = async data => {
     return response.data
 }
 
-export const changeAnecdote = async data => {
+export const updateAnecdote = async data => {
     const response = await axios.put(`${baseUrl}/${data.id}`, { content: data.content, votes: data.votes })
     return response.data
 }
