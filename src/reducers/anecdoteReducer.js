@@ -1,3 +1,5 @@
+import { getAllAnecdotes } from '../services/anecdotes'
+
 export const change = data => {
   return {
     type: 'CHANGE',
@@ -12,10 +14,13 @@ export const createAnecdote = data => {
   }
 }
 
-export const setAnecdotes = data => {
-  return {
-    type: "SET_ANECDOTES",
-    data
+export const getAnecdotes = () => {
+  return async dispatch => {
+    const data = await getAllAnecdotes()
+    dispatch({
+      type: "SET_ANECDOTES",
+      data
+    })
   }
 }
 

@@ -8,7 +8,6 @@ export const Anecdote = ({ id, content, votes }) => {
 
     const voteAnecdote = async () => {
         const newAnecdote = await changeAnecdote({id, content, votes: votes + 1})
-        console.log("voteAnecdote -> newAnecdote", newAnecdote)
         dispatch(change(newAnecdote))
         dispatch(setNotification(`You voted '${content}'`))
         setTimeout(() => {
