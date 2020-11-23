@@ -1,20 +1,26 @@
-const message = "";
+let anyOldTimeouts;
 
-export const setNotification = (message) => {
-    return {
-        type : "SET_NOTIFICATION",
-        message
+export const setNotification = (message, time = 5000) => {
+    return async dispatch => {
+        clearTimeout(anyOldTimeouts)
+        dispatch({
+            type: "SET_NOTIFICATION",
+            message
+        })
+        anyOldTimeouts = setTimeout(() => {
+            dispatch(removeNotification())
+        }, time)
     }
 }
 
 export const removeNotification = () => {
     return {
-        type : "REMOVE_NOTIFICATION"
+        type: "REMOVE_NOTIFICATION"
     }
 }
 
-const reducer = (state = message, action) => {
-    switch(action.type){
+const reducer = (state = '', action) => {
+    switch (action.type) {
         case "SET_NOTIFICATION":
             return action.message
         case "REMOVE_NOTIFICATION":
